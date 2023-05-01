@@ -9,7 +9,7 @@ export class CsvFilter {
         const result = [];
         result.push(this.lines[0]);
         const fields = this.splitFields();
-        if (this.isNotFilledIvaAndIgic(fields)) {
+        if (this.isNotFilledIvaAndIgic(fields) && !(!fields[4] && !fields[5])) {
             result.push(this.lines[1]);
         }
         return result;
