@@ -11,18 +11,11 @@ export class CsvFilter {
         const fields = this.splitFields();
         const ivaField = fields[4];
         const igicField = fields[5];
-        if (this.isNotFilledBoth(ivaField,igicField) && this.isNotEmptyBoth(ivaField,igicField)) {
+        const taxFieldAreMutuallyExclusive = (!ivaField || !igicField) && !(!ivaField && !igicField);
+        if(taxFieldAreMutuallyExclusive) {
             result.push(this.lines[1]);
         }
         return result;
-    }
-
-    private isNotEmptyBoth(field1: string, field2:string) {
-        return !(!field1 && !field2);
-    }
-
-    private isNotFilledBoth(field1: string, field2:string) {
-        return !field1 || !field2;
     }
 
     private splitFields() {
