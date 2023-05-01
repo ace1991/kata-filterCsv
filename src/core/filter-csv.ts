@@ -9,14 +9,20 @@ export class CsvFilter {
         const result = [];
         result.push(this.lines[0]);
         const fields = this.splitFields();
-        if (this.isNotFilledIvaAndIgic(fields) && !(!fields[4] && !fields[5])) {
+        const ivaField = fields[4];
+        const igicField = fields[5];
+        if (this.isNotFilledBoth(ivaField,igicField) && this.isNotEmptyBoth(ivaField,igicField)) {
             result.push(this.lines[1]);
         }
         return result;
     }
 
-    private isNotFilledIvaAndIgic(fields: string[]) {
-        return !fields[4] || !fields[5];
+    private isNotEmptyBoth(field1: string, field2:string) {
+        return !(!field1 && !field2);
+    }
+
+    private isNotFilledBoth(field1: string, field2:string) {
+        return !field1 || !field2;
     }
 
     private splitFields() {
