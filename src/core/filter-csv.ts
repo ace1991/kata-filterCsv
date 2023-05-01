@@ -8,7 +8,7 @@ export class CsvFilter {
     get filteredLines() {
         const result = [];
         result.push(this.lines[0]);
-        const fields = this.splitFlieds();
+        const fields = this.splitFields();
         if (this.isNotFilledIvaAndIgic(fields)) {
             result.push(this.lines[1]);
         }
@@ -19,7 +19,7 @@ export class CsvFilter {
         return !fields[4] || !fields[5];
     }
 
-    private splitFlieds() {
+    private splitFields() {
         return this.lines[1].split(this._separator);
     }
 }
