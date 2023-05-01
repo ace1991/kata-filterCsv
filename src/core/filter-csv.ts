@@ -12,8 +12,7 @@ export class CsvFilter {
         const ivaField = fields[4];
         const igicField = fields[5];
         const decimalRegex = '\\d+(\\.\\d+)?';
-        const taxFieldAreMutuallyExclusive =  (ivaField.match(decimalRegex) || igicField.match(decimalRegex)) &&
-            !(ivaField.match(decimalRegex) && igicField.match(decimalRegex));
+        const taxFieldAreMutuallyExclusive =  (ivaField.match(decimalRegex) || igicField.match(decimalRegex)) && (!ivaField || !igicField);
         if(taxFieldAreMutuallyExclusive) {
             result.push(this.lines[1]);
         }
