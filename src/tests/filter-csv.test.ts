@@ -33,4 +33,5 @@ describe('CSV Filter', () => {
 
         expect(result).toEqual([header]);
     });
+
 });
